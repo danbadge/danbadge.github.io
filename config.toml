@@ -1,20 +1,20 @@
 # Site settings
-baseurl = "https://example.org/"
-themesDir = "../.."
-languageCode = "en-us"
-title = "Hugo Cactus Theme"
+baseurl = "https://danbadge.github.io/"
+themesDir = "themes"
+languageCode = "en-gb"
+title = "Daniel Watts"
 theme = "hugo-cactus-theme"
 # Enter your tracking code to enable Google Analytics
 googleAnalytics = ""
 # Disable comments by leaving disqusShortname empty
-disqusShortname = "spf13"
+disqusShortname = ""
 
 [params]
-	name = "John Doe"
-	description = "Describe your website"
-	bio = "Blogger - Programmer - Gopher"
+	name = "Daniel Watts"
+	description = ""
+	bio = "Software Developer doing stuff"
 	# Enter optionally your twitter account
-	twitter = "Your Twitter account"
+	twitter = "@dan_badge"
 	enableRSS = true
 
 	# Integrate Javascript files or stylesheets by adding the url to the external assets or by
