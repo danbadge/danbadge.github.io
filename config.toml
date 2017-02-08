@@ -12,10 +12,10 @@ disqusShortname = ""
 [params]
 	name = "Daniel Watts"
 	description = ""
-	bio = "Software Developer doing stuff"
+	bio = "Working with teams and building software"
 	# Enter optionally your twitter account
 	twitter = "@dan_badge"
-	enableRSS = true
+	enableRSS = false
 
 	# Integrate Javascript files or stylesheets by adding the url to the external assets or by
 	# linking local files with their path relative to the static folder, e.g. "css/styles.css"
@@ -35,7 +35,7 @@ disqusShortname = ""
 	readMore = ""
 	copyright = ""
 	# Sharing options and author information in posts
-	aboutAuthor = "I'm an enthusiastic gopher."
+	aboutAuthor = ""
 	tweet = ""
 	share = ""
 	# 404 page
@@ -49,7 +49,5 @@ disqusShortname = ""
 
 # Add additional social link entries underneath
 [social]
-    twitter  = "https://www.twitter.com/"
-    facebook = "https://www.facebook.com/"
-    github   = "https://www.github.com/"
-    dribble  = "https://www.dribbble.com/"
+    twitter  = "https://www.twitter.com/dan_badge"
+    github   = "https://www.github.com/danbadge"
