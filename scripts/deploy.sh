@@ -1,8 +1,6 @@
 #!/bin/bash
 
 git checkout gh-pages
-
-rm -rf public
 hugo -d public
 cd public
 git add --all
