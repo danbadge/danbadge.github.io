@@ -21,9 +21,8 @@
 
 &lt;p&gt;Previously, we deployed a change to one of our applications and didn&amp;rsquo;t tell anyone unless it solved a particular client issue. This meant we wouldn&amp;rsquo;t seek much feedback on new features and the team&amp;rsquo;s progress and activity was largely unseen by the rest of the company. Bearing in mind that our software is increasingly used internally, this seemed like a real missed opportunity.&lt;/p&gt;
 
-&lt;h2 id=&#34;enter-release-crab&#34;&gt;Enter Release Crab&lt;/h2&gt;
-
-&lt;p&gt;Now we have a dedicated Slack channel for internally announcing the release of new features, bug fixes and other changes. The announcement is typically done by a developer after they push their changes to production as they have the most context. But we&amp;rsquo;re pragmatic with it and don&amp;rsquo;t announce every little change, for example, we might wait until we&amp;rsquo;ve finished a sequence of quick deployments. However, &lt;a href=&#34;http://tech.driftrock.com/post/tech-values&#34;&gt;we value feedback&lt;/a&gt; so we&amp;rsquo;re regularly announcing updates.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Enter Release Crab&lt;/strong&gt;
+Now we have a dedicated Slack channel for internally announcing the release of new features, bug fixes and other changes. The announcement is typically done by a developer after they push their changes to production as they have the most context. But we&amp;rsquo;re pragmatic with it and don&amp;rsquo;t announce every little change, for example, we might wait until we&amp;rsquo;ve finished a sequence of quick deployments. However, &lt;a href=&#34;http://tech.driftrock.com/post/tech-values&#34;&gt;we value feedback&lt;/a&gt; so we&amp;rsquo;re regularly announcing updates.&lt;/p&gt;
 
 &lt;p&gt;Here&amp;rsquo;s an example of a few changes going live for Create (an application for quickly creating ads on Facebook):&lt;/p&gt;
 
