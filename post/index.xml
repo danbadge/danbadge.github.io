@@ -6,8 +6,100 @@
     <description>Recent content in Post-rsses on Daniel Watts</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 29 Dec 2016 16:51:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Mar 2017 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://danbadge.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Driftrock&#39;s Journey to Continuous Delivery</title>
+      <link>https://danbadge.github.io/post/journey-to-cd/</link>
+      <pubDate>Fri, 31 Mar 2017 12:00:00 +0000</pubDate>
+      
+      <guid>https://danbadge.github.io/post/journey-to-cd/</guid>
+      <description>
+
+&lt;p&gt;Over the last year, Driftrock has been on a fairly typical journey - you might have heard it before - we went from manual deployments and an apathy for shipping software to automated and repeatable deployments with a focus on delivering value.&lt;/p&gt;
+
+&lt;p&gt;Rather then bore you with yet another post about the merits of Continuous Delivery, though I would like to, I’ll attempt to focus instead on how we achieved this shift. Inspired by the book &lt;a href=&#34;https://www.amazon.co.uk/d/Books/More-Fearless-Change-Strategies-Making-Ideas-Happen/0133966445&#34;&gt;More Fearless Change&lt;/a&gt; by Mary Lynn Manns &amp;amp; Linda Rising, I’ll do my best to remember the steps we took and more specifically the patterns we continue to use to try and change the team’s behaviours.&lt;/p&gt;
+
+&lt;h2 id=&#34;rolling-back-the-year-s&#34;&gt;Rolling back the year(s)&lt;/h2&gt;
+
+&lt;p&gt;First some context, back in June 2016 a change to any of our applications would meander it’s way into production. There was very little awareness of whether a change had been deployed, there was a frustratingly popular branching model that dramatically increased cognitive load and deployments were manually triggered from a developer&amp;rsquo;s machine via Heroku’s CLI.&lt;/p&gt;
+
+&lt;p&gt;A new change from development to production looked a bit like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://danbadge.github.io/img/articles/journey-to-cd/deployment-process-before.png&#34; alt=&#34;Deployment process before&#34; /&gt;
+&lt;br /&gt;&lt;em&gt;Green - automated step.&lt;br /&gt;
+Orange - unavoidable manual step or a manual step we’re not (yet) looking to change.&lt;br /&gt;
+Red - avoidable manual step.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;There was also a number of inconsistencies in that deployment process depending on the application. Some didn’t have a staging environment, those that did may or may not have been automatically deployed staging and not all applications had automated tests run on master or any other branches. In short, it was unnecessarily complex, wildly inconsistent with little to no automation. So it’s no surprise that there was a lack of interest from the team when it came to deploying software.&lt;/p&gt;
+
+&lt;p&gt;All of the above meant deployments were irregular and risky. More often than not a large batch of changes were pushed live, predictably increasing the likelihood of something going wrong and sometimes removing the ability to safely rollback.&lt;/p&gt;
+
+&lt;h2 id=&#34;baby-steps&#34;&gt;Baby Steps&lt;/h2&gt;
+
+&lt;p&gt;I’ll try to explain the steps we took and the relevant patterns we used to improve the scenario described above. At the very bottom of this page there is a reference for the patterns mentioned throughout these steps. Also you can find all the patterns conveniently &lt;a href=&#34;http://nebula.wsimg.com/4e8937e14b7a33327914aceddd3b11c0?AccessKeyId=C3C1767177F54BB8BF89&amp;amp;disposition=0&amp;amp;alloworigin=1&#34;&gt;listed and described here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;step-1-involve-everyone&#34;&gt;Step 1 - Involve Everyone&lt;/h3&gt;
+
+&lt;p&gt;Unconventionally it started by improving our retrospectives. The team needed a platform to discuss problems and suggest improvements (&lt;em&gt;Involve Everyone&lt;/em&gt;). Though we were having a weekly chat called a retrospective this bared little resemblance to the retrospectives I had seen at several other companies. Originally this meeting was much closer to a weekly status update, it focussed on every day work items and their progress rather then looking at &lt;em&gt;how we can improve how we work&lt;/em&gt;. Suggesting and then demonstrating a more structured approach to retrospectives (by facilitating the first few retros) had a significant impact on the team beyond Continuous Delivery but one of the early discussion points was around how we deploy our software (&lt;em&gt;Plant the Seeds&lt;/em&gt;).&lt;/p&gt;
+
+&lt;h3 id=&#34;step-2-just-do-it&#34;&gt;Step 2 - Just Do It&lt;/h3&gt;
+
+&lt;p&gt;With the team a little uncertain about how a move towards Continuous Delivery might benefit them the next step was a simple one - show them an example (&lt;em&gt;Just Do It&lt;/em&gt;). I put together a simple HTTP API application with one endpoint that returned ‘200 OK’ and created a deployment pipeline in &lt;a href=&#34;https://snap-ci.com/&#34;&gt;Snap CI&lt;/a&gt;. I tried to mimic how we could treat our regular applications and only tackled the more immediate problems (&lt;em&gt;Pick Your Battles&lt;/em&gt;); manual deployments and managing multiple branches on deploy. The latter also &lt;a href=&#34;https://trunkbaseddevelopment.com/5-min-overview/&#34;&gt;reducing the distance&lt;/a&gt; between local development and production. Demonstrating that our deployment process could begin to evolve into this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://danbadge.github.io/img/articles/journey-to-cd/deployment-process-after.png&#34; alt=&#34;Deployment process step 2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you might expect (like with working software) this became a great reference point for demoing and explaining the value of CD and how it compares to what we were doing.&lt;/p&gt;
+
+&lt;h3 id=&#34;step-3-trial-run&#34;&gt;Step 3 - Trial Run&lt;/h3&gt;
+
+&lt;p&gt;With that seed planted, a working example and regular problems shipping quality software (only highlighting the severity - &lt;em&gt;Wake-up Call&lt;/em&gt;) buy-in from the rest of the team was steadily increasing. The next step was to commit the team to moving a real application or two to the new system (&lt;em&gt;Trial Run&lt;/em&gt;). We took two problematic applications to validate our assumptions as early as possible, created deployment pipelines for them, got them successfully deploying and let that change settle in. At this point I thankfully had some help (&lt;em&gt;Ask for Help&lt;/em&gt;), making the progress much faster and the potential backlash easier to navigate.&lt;/p&gt;
+
+&lt;h3 id=&#34;step-4-persistent-pr&#34;&gt;Step 4 - Persistent PR&lt;/h3&gt;
+
+&lt;p&gt;One pattern mentioned in the book stood out for me throughout this process - Persistent PR. On reflection this subtly appeared in a number of places, sometimes intentional but often unintentionally. Here’s a breakdown of where it featured:
+* We changed our regular stand-up meeting so that it focussed first on what was deployed to production, then staging and then active development - typically known as &lt;a href=&#34;https://blog.matthewbutt.com/2016/05/16/reinvigorating-a-daily-stand-up-by-walking-the-board/&#34;&gt;Walk the Board&lt;/a&gt;. Although indirect, it provides a regular reminder to the team to be focussed first on shipping software and how we can progress work items into production.
+* At a weekly company meeting we briefly demoed how we changed our approach to deploying software. Incidentally this came about by chance but it was an opportunity worth taking (&lt;em&gt;Smell of Success&lt;/em&gt;).
+* We started to capture and communicate metrics around the number of deployments to production.
+* We introduced a few feedback loops to help the flow of information around deployments:
+    * Slack notifications - pushing information about failed builds or successful deployments. This meant developers didn’t need to go looking for the status of their change, it came to them.
+    * Release notes - &lt;a href=&#34;http://tech.driftrock.com/post/release-notes/&#34;&gt;we started announcing client-facing changes internally&lt;/a&gt; as and when they were rolled out. This helped generate interest and discussion around new features from people across the company.
+    * Monitoring - something we haven’t fully worked out yet, but we continue to experiment with monitoring and better ways to gather feedback from our production systems.&lt;/p&gt;
+
+&lt;h2 id=&#34;so-where-are-we-now&#34;&gt;So, where are we now?&lt;/h2&gt;
+
+&lt;p&gt;We’re currently deploying to production around 15 times a week, a good sustainable pace for our size team. We ended up moving approximately 30 projects to Snap CI. We created CD pipelines for a variety of applications; Ruby gems, Elixir packages, static sites hosted on AWS, web applications on Heroku and others hosted in Kubernetes. Everyone on the team takes ownership of ensuring a change they&amp;rsquo;re working on is deployed to production and they work closely with other team members to test the relevant functionality. We’re increasingly reliant on automated tests, &lt;a href=&#34;https://martinfowler.com/articles/feature-toggles.html&#34;&gt;feature toggles&lt;/a&gt; and backwards compatibility - topics which have featured heavily in our retrospectives.&lt;/p&gt;
+
+&lt;p&gt;As a side note, Snap CI didn’t really live up to expectation but even this generated a few positives. After a experiencing several issues we began investing in using &lt;a href=&#34;http://tech.driftrock.com/post/speeding-up-ci-tests-using-docker/&#34;&gt;Docker for CI&lt;/a&gt; to isolate and take ownership of the build environment. This had many knock-on effects such as using Docker in development and transitioning towards Kubernetes. It also reduced our dependency on our choice of CI/CD tool which soon became really important when &lt;a href=&#34;https://blog.snap-ci.com/blog/2017/02/06/2017-02-06-snap-announcement/&#34;&gt;Snap CI announced it was going away&lt;/a&gt;. Fortunately, we’re now in a much better position to understand what we need, so we’re in the process of moving to &lt;a href=&#34;https://buildkite.com&#34;&gt;Buildkite&lt;/a&gt; (another article for another time !).&lt;/p&gt;
+
+&lt;p&gt;Hopefully that gives you an insight into how we continue to transition towards Continuous Delivery and the patterns that helped us. Our approach continues to evolve as we learn and we recognise that we&amp;rsquo;ve still got some way to go. Summarising all of that effort into four steps certainly oversimplifies, to get to where we are now took many months even for our small team. This journey reminded us that a change like this doesn’t happen overnight and it takes lots of small, unremarkable steps in the right direction.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h3 id=&#34;other-helpful-resources&#34;&gt;Other Helpful Resources&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://vimeo.com/123616200&#34;&gt;Linda Rising - Myths And Patterns Of Organisational Change&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;https://www.amazon.com/gp/product/0321601912&#34;&gt;Continuous Delivery - Jez Humble &amp;amp; Dave Farley&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;http://www.hibri.net/2016/06/18/continuous-delivery-rags-to-riches/&#34;&gt;Continuous Delivery - Going from rags to riches - Hibri Marzook&lt;/a&gt; &lt;br /&gt;
+&lt;a href=&#34;https://trunkbaseddevelopment.com/&#34;&gt;Trunk Based Development&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;change-patterns-reference&#34;&gt;Change Patterns Reference&lt;/h3&gt;
+
+&lt;p&gt;Paraphrasing slightly from the book here’s a selection of patterns I’ve mentioned above:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Baby Steps&lt;/strong&gt; - Take one small step at a time towards your goal.&lt;br /&gt;
+&lt;strong&gt;Involve Everyone&lt;/strong&gt; - Everyone should have an opportunity to make their own contribution.&lt;br /&gt;
+&lt;strong&gt;Plant the Seeds&lt;/strong&gt; - Take every opportunity you can to spark interest in an idea.&lt;br /&gt;
+&lt;strong&gt;Just Do It&lt;/strong&gt; - Don’t wait for the perfect moment, instead take the first baby step and start learning.&lt;br /&gt;
+&lt;strong&gt;Pick your Battles&lt;/strong&gt; - Focus your efforts on the most pressing issues.&lt;br /&gt;
+&lt;strong&gt;Trial Run&lt;/strong&gt; - When there’s reluctance to commit to an idea, suggest an experiment for a short period.&lt;br /&gt;
+&lt;strong&gt;Wake-up Call&lt;/strong&gt; - Point out the issues that create a need for change.&lt;br /&gt;
+&lt;strong&gt;Ask for Help&lt;/strong&gt; - Look for people and resources to help your efforts and encourage involvement.&lt;br /&gt;
+&lt;strong&gt;Persistant PR&lt;/strong&gt; - Keep the new idea in front of everyone, consistently promote it in a variety of ways.&lt;br /&gt;
+&lt;strong&gt;Smell of Success&lt;/strong&gt; - When your efforts produce a visible positive result, treat this as a teaching moment.&lt;br /&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>How we do production release announcements at Driftrock</title>
