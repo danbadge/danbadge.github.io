@@ -58,14 +58,20 @@ Red - avoidable manual step.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;step-4-persistent-pr&#34;&gt;Step 4 - Persistent PR&lt;/h3&gt;
 
-&lt;p&gt;One pattern mentioned in the book stood out for me throughout this process - Persistent PR. On reflection this subtly appeared in a number of places, sometimes intentional but often unintentionally. Here’s a breakdown of where it featured:
-* We changed our regular stand-up meeting so that it focussed first on what was deployed to production, then staging and then active development - typically known as &lt;a href=&#34;https://blog.matthewbutt.com/2016/05/16/reinvigorating-a-daily-stand-up-by-walking-the-board/&#34;&gt;Walk the Board&lt;/a&gt;. Although indirect, it provides a regular reminder to the team to be focussed first on shipping software and how we can progress work items into production.
-* At a weekly company meeting we briefly demoed how we changed our approach to deploying software. Incidentally this came about by chance but it was an opportunity worth taking (&lt;em&gt;Smell of Success&lt;/em&gt;).
-* We started to capture and communicate metrics around the number of deployments to production.
-* We introduced a few feedback loops to help the flow of information around deployments:
-    * Slack notifications - pushing information about failed builds or successful deployments. This meant developers didn’t need to go looking for the status of their change, it came to them.
-    * Release notes - &lt;a href=&#34;http://tech.driftrock.com/post/release-notes/&#34;&gt;we started announcing client-facing changes internally&lt;/a&gt; as and when they were rolled out. This helped generate interest and discussion around new features from people across the company.
-    * Monitoring - something we haven’t fully worked out yet, but we continue to experiment with monitoring and better ways to gather feedback from our production systems.&lt;/p&gt;
+&lt;p&gt;One pattern mentioned in the book stood out for me throughout this process - Persistent PR. On reflection this subtly appeared in a number of places, sometimes intentional but often unintentionally. Here’s a breakdown of where it featured:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;We changed our regular stand-up meeting so that it focussed first on what was deployed to production, then staging and then active development - typically known as &lt;a href=&#34;https://blog.matthewbutt.com/2016/05/16/reinvigorating-a-daily-stand-up-by-walking-the-board/&#34;&gt;Walk the Board&lt;/a&gt;. Although indirect, it provides a regular reminder to the team to be focussed first on shipping software and how we can progress work items into production.&lt;/li&gt;
+&lt;li&gt;At a weekly company meeting we briefly demoed how we changed our approach to deploying software. Incidentally this came about by chance but it was an opportunity worth taking (&lt;em&gt;Smell of Success&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;We started to capture and communicate metrics around the number of deployments to production.&lt;/li&gt;
+&lt;li&gt;We introduced a few feedback loops to help the flow of information around deployments:
+
+&lt;ul&gt;
+&lt;li&gt;Slack notifications - pushing information about failed builds or successful deployments. This meant developers didn’t need to go looking for the status of their change, it came to them.&lt;/li&gt;
+&lt;li&gt;Release notes - &lt;a href=&#34;http://tech.driftrock.com/post/release-notes/&#34;&gt;we started announcing client-facing changes internally&lt;/a&gt; as and when they were rolled out. This helped generate interest and discussion around new features from people across the company.&lt;/li&gt;
+&lt;li&gt;Monitoring - something we haven’t fully worked out yet, but we continue to experiment with monitoring and better ways to gather feedback from our production systems.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;so-where-are-we-now&#34;&gt;So, where are we now?&lt;/h2&gt;
 
