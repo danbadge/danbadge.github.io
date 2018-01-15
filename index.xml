@@ -2,12 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Daniel Watts</title>
-    <link>https://danbadge.github.io/index.xml</link>
+    <link>https://danbadge.github.io/</link>
     <description>Recent content on Daniel Watts</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 31 Mar 2017 12:00:00 +0000</lastBuildDate>
-    <atom:link href="https://danbadge.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Oct 2017 12:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://danbadge.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Taking retrospectives to the rest of the business</title>
+      <link>https://danbadge.github.io/post/taking-retrospectives-to-the-rest-of-the-business/</link>
+      <pubDate>Fri, 13 Oct 2017 12:00:00 +0000</pubDate>
+      
+      <guid>https://danbadge.github.io/post/taking-retrospectives-to-the-rest-of-the-business/</guid>
+      <description>The Product Development team at Driftrock has been using retrospectives for just over a year and it&amp;rsquo;s served us really well. In that time we&amp;rsquo;ve made loads of improvements and changes to how we work. Those changes range from small tweaks to our process to large uncertain ideas which we trial for a limited period. Our process for a retrospective is fairly typical (in my experience); we do them fortnightly and we rotate the facilitator role who runs the session how they see fit.</description>
+    </item>
     
     <item>
       <title>Driftrock&#39;s Journey to Continuous Delivery</title>
@@ -15,96 +26,8 @@
       <pubDate>Fri, 31 Mar 2017 12:00:00 +0000</pubDate>
       
       <guid>https://danbadge.github.io/post/journey-to-cd/</guid>
-      <description>
-
-&lt;p&gt;Over the last year, Driftrock has been on a fairly typical journey - you might have heard it before - we went from manual deployments and an apathy for shipping software to automated and repeatable deployments with a focus on delivering value.&lt;/p&gt;
-
-&lt;p&gt;Rather then bore you with yet another post about the merits of Continuous Delivery, though I would like to, I’ll attempt to focus instead on how we achieved this shift. Inspired by the book &lt;a href=&#34;https://www.amazon.co.uk/d/Books/More-Fearless-Change-Strategies-Making-Ideas-Happen/0133966445&#34;&gt;More Fearless Change&lt;/a&gt; by Mary Lynn Manns &amp;amp; Linda Rising, I’ll do my best to remember the steps we took and more specifically the patterns we continue to use to try and change the team’s behaviours.&lt;/p&gt;
-
-&lt;h2 id=&#34;rolling-back-the-year-s&#34;&gt;Rolling back the year(s)&lt;/h2&gt;
-
-&lt;p&gt;First some context, back in June 2016 a change to any of our applications would meander it’s way into production. There was very little awareness of whether a change had been deployed, there was a frustratingly popular branching model that dramatically increased cognitive load and deployments were manually triggered from a developer&amp;rsquo;s machine via Heroku’s CLI.&lt;/p&gt;
-
-&lt;p&gt;A new change from development to production looked a bit like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://danbadge.github.io/img/articles/journey-to-cd/deployment-process-before.png&#34; alt=&#34;Deployment process before&#34; /&gt;
-&lt;br /&gt;&lt;em&gt;Green - automated step.&lt;br /&gt;
-Orange - unavoidable manual step or a manual step we’re not (yet) looking to change.&lt;br /&gt;
-Red - avoidable manual step.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;There was also a number of inconsistencies in that deployment process depending on the application. Some didn’t have a staging environment, those that did may or may not have been automatically deployed staging and not all applications had automated tests run on master or any other branches. In short, it was unnecessarily complex, wildly inconsistent with little to no automation. So it’s no surprise that there was a lack of interest from the team when it came to deploying software.&lt;/p&gt;
-
-&lt;p&gt;All of the above meant deployments were irregular and risky. More often than not a large batch of changes were pushed live, predictably increasing the likelihood of something going wrong and sometimes removing the ability to safely rollback.&lt;/p&gt;
-
-&lt;h2 id=&#34;baby-steps&#34;&gt;Baby Steps&lt;/h2&gt;
-
-&lt;p&gt;I’ll try to explain the steps we took and the relevant patterns we used to improve the scenario described above. At the very bottom of this page there is a reference for the patterns mentioned throughout these steps. Also you can find all the patterns conveniently &lt;a href=&#34;http://nebula.wsimg.com/4e8937e14b7a33327914aceddd3b11c0?AccessKeyId=C3C1767177F54BB8BF89&amp;amp;disposition=0&amp;amp;alloworigin=1&#34;&gt;listed and described here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;step-1-involve-everyone&#34;&gt;Step 1 - Involve Everyone&lt;/h3&gt;
-
-&lt;p&gt;Unconventionally it started by improving our retrospectives. The team needed a platform to discuss problems and suggest improvements (&lt;em&gt;Involve Everyone&lt;/em&gt;). Though we were having a weekly chat called a retrospective this bared little resemblance to the retrospectives I had seen at several other companies. Originally this meeting was much closer to a weekly status update, it focussed on every day work items and their progress rather then looking at &lt;em&gt;how we can improve how we work&lt;/em&gt;. Suggesting and then demonstrating a more structured approach to retrospectives (by facilitating the first few retros) had a significant impact on the team beyond Continuous Delivery but one of the early discussion points was around how we deploy our software (&lt;em&gt;Plant the Seeds&lt;/em&gt;).&lt;/p&gt;
-
-&lt;h3 id=&#34;step-2-just-do-it&#34;&gt;Step 2 - Just Do It&lt;/h3&gt;
-
-&lt;p&gt;With the team a little uncertain about how a move towards Continuous Delivery might benefit them the next step was a simple one - show them an example (&lt;em&gt;Just Do It&lt;/em&gt;). I put together a simple HTTP API application with one endpoint that returned ‘200 OK’ and created a deployment pipeline in &lt;a href=&#34;https://snap-ci.com/&#34;&gt;Snap CI&lt;/a&gt;. I tried to mimic how we could treat our regular applications and only tackled the more immediate problems (&lt;em&gt;Pick Your Battles&lt;/em&gt;); manual deployments and managing multiple branches on deploy. The latter also &lt;a href=&#34;https://trunkbaseddevelopment.com/5-min-overview/&#34;&gt;reducing the distance&lt;/a&gt; between local development and production. Demonstrating that our deployment process could begin to evolve into this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://danbadge.github.io/img/articles/journey-to-cd/deployment-process-after.png&#34; alt=&#34;Deployment process step 2&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As you might expect (like with working software) this became a great reference point for demoing and explaining the value of CD and how it compares to what we were doing.&lt;/p&gt;
-
-&lt;h3 id=&#34;step-3-trial-run&#34;&gt;Step 3 - Trial Run&lt;/h3&gt;
-
-&lt;p&gt;With that seed planted, a working example and regular problems shipping quality software (only highlighting the severity - &lt;em&gt;Wake-up Call&lt;/em&gt;) buy-in from the rest of the team was steadily increasing. The next step was to commit the team to moving a real application or two to the new system (&lt;em&gt;Trial Run&lt;/em&gt;). We took two problematic applications to validate our assumptions as early as possible, created deployment pipelines for them, got them successfully deploying and let that change settle in. At this point I thankfully had some help (&lt;em&gt;Ask for Help&lt;/em&gt;), making the progress much faster and the potential backlash easier to navigate.&lt;/p&gt;
-
-&lt;h3 id=&#34;step-4-persistent-pr&#34;&gt;Step 4 - Persistent PR&lt;/h3&gt;
-
-&lt;p&gt;One pattern mentioned in the book stood out for me throughout this process - Persistent PR. On reflection this subtly appeared in a number of places, sometimes intentional but often unintentionally. Here’s a breakdown of where it featured:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;We changed our regular stand-up meeting so that it focussed first on what was deployed to production, then staging and then active development - typically known as &lt;a href=&#34;https://blog.matthewbutt.com/2016/05/16/reinvigorating-a-daily-stand-up-by-walking-the-board/&#34;&gt;Walk the Board&lt;/a&gt;. Although indirect, it provides a regular reminder to the team to be focussed first on shipping software and how we can progress work items into production.&lt;/li&gt;
-&lt;li&gt;At a weekly company meeting we briefly demoed how we changed our approach to deploying software. Incidentally this came about by chance but it was an opportunity worth taking (&lt;em&gt;Smell of Success&lt;/em&gt;).&lt;/li&gt;
-&lt;li&gt;We started to capture and communicate metrics around the number of deployments to production.&lt;/li&gt;
-&lt;li&gt;We introduced a few feedback loops to help the flow of information around deployments:
-
-&lt;ul&gt;
-&lt;li&gt;Slack notifications - pushing information about failed builds or successful deployments. This meant developers didn’t need to go looking for the status of their change, it came to them.&lt;/li&gt;
-&lt;li&gt;Release notes - &lt;a href=&#34;http://tech.driftrock.com/post/release-notes/&#34;&gt;we started announcing client-facing changes internally&lt;/a&gt; as and when they were rolled out. This helped generate interest and discussion around new features from people across the company.&lt;/li&gt;
-&lt;li&gt;Monitoring - something we haven’t fully worked out yet, but we continue to experiment with monitoring and better ways to gather feedback from our production systems.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;so-where-are-we-now&#34;&gt;So, where are we now?&lt;/h2&gt;
-
-&lt;p&gt;We’re currently deploying to production around 15 times a week, a good sustainable pace for our size team. We ended up moving approximately 30 projects to Snap CI. We created CD pipelines for a variety of applications; Ruby gems, Elixir packages, static sites hosted on AWS, web applications on Heroku and others hosted in Kubernetes. Everyone on the team takes ownership of ensuring a change they&amp;rsquo;re working on is deployed to production and they work closely with other team members to test the relevant functionality. We’re increasingly reliant on automated tests, &lt;a href=&#34;https://martinfowler.com/articles/feature-toggles.html&#34;&gt;feature toggles&lt;/a&gt; and backwards compatibility - topics which have featured heavily in our retrospectives.&lt;/p&gt;
-
-&lt;p&gt;As a side note, Snap CI didn’t really live up to expectation but even this generated a few positives. After a experiencing several issues we began investing in using &lt;a href=&#34;http://tech.driftrock.com/post/speeding-up-ci-tests-using-docker/&#34;&gt;Docker for CI&lt;/a&gt; to isolate and take ownership of the build environment. This had many knock-on effects such as using Docker in development and transitioning towards Kubernetes. It also reduced our dependency on our choice of CI/CD tool which soon became really important when &lt;a href=&#34;https://blog.snap-ci.com/blog/2017/02/06/2017-02-06-snap-announcement/&#34;&gt;Snap CI announced it was going away&lt;/a&gt;. Fortunately, we’re now in a much better position to understand what we need, so we’re in the process of moving to &lt;a href=&#34;https://buildkite.com&#34;&gt;Buildkite&lt;/a&gt; (another article for another time !).&lt;/p&gt;
-
-&lt;p&gt;Hopefully that gives you an insight into how we continue to transition towards Continuous Delivery and the patterns that helped us. Our approach continues to evolve as we learn and we recognise that we&amp;rsquo;ve still got some way to go. Summarising all of that effort into four steps certainly oversimplifies, to get to where we are now took many months even for our small team. This journey reminded us that a change like this doesn’t happen overnight and it takes lots of small, unremarkable steps in the right direction.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;h3 id=&#34;other-helpful-resources&#34;&gt;Other Helpful Resources&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://vimeo.com/123616200&#34;&gt;Linda Rising - Myths And Patterns Of Organisational Change&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&#34;https://www.amazon.com/gp/product/0321601912&#34;&gt;Continuous Delivery - Jez Humble &amp;amp; Dave Farley&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&#34;http://www.hibri.net/2016/06/18/continuous-delivery-rags-to-riches/&#34;&gt;Continuous Delivery - Going from rags to riches - Hibri Marzook&lt;/a&gt; &lt;br /&gt;
-&lt;a href=&#34;https://trunkbaseddevelopment.com/&#34;&gt;Trunk Based Development&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;change-patterns-reference&#34;&gt;Change Patterns Reference&lt;/h3&gt;
-
-&lt;p&gt;Paraphrasing slightly from the book here’s a selection of patterns I’ve mentioned above:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Baby Steps&lt;/strong&gt; - Take one small step at a time towards your goal.&lt;br /&gt;
-&lt;strong&gt;Involve Everyone&lt;/strong&gt; - Everyone should have an opportunity to make their own contribution.&lt;br /&gt;
-&lt;strong&gt;Plant the Seeds&lt;/strong&gt; - Take every opportunity you can to spark interest in an idea.&lt;br /&gt;
-&lt;strong&gt;Just Do It&lt;/strong&gt; - Don’t wait for the perfect moment, instead take the first baby step and start learning.&lt;br /&gt;
-&lt;strong&gt;Pick your Battles&lt;/strong&gt; - Focus your efforts on the most pressing issues.&lt;br /&gt;
-&lt;strong&gt;Trial Run&lt;/strong&gt; - When there’s reluctance to commit to an idea, suggest an experiment for a short period.&lt;br /&gt;
-&lt;strong&gt;Wake-up Call&lt;/strong&gt; - Point out the issues that create a need for change.&lt;br /&gt;
-&lt;strong&gt;Ask for Help&lt;/strong&gt; - Look for people and resources to help your efforts and encourage involvement.&lt;br /&gt;
-&lt;strong&gt;Persistant PR&lt;/strong&gt; - Keep the new idea in front of everyone, consistently promote it in a variety of ways.&lt;br /&gt;
-&lt;strong&gt;Smell of Success&lt;/strong&gt; - When your efforts produce a visible positive result, treat this as a teaching moment.&lt;br /&gt;&lt;/p&gt;
-</description>
+      <description>Over the last year, Driftrock has been on a fairly typical journey - you might have heard it before - we went from manual deployments and an apathy for shipping software to automated and repeatable deployments with a focus on delivering value.
+Rather then bore you with yet another post about the merits of Continuous Delivery, though I would like to, I’ll attempt to focus instead on how we achieved this shift.</description>
     </item>
     
     <item>
@@ -114,37 +37,7 @@ Red - avoidable manual step.&lt;/em&gt;&lt;/p&gt;
       
       <guid>https://danbadge.github.io/post/release-notes-at-driftrock/</guid>
       <description>&lt;p&gt;At Driftrock we&amp;rsquo;re a small company that has grown from 8 to 18 people in the last 9 months. That&amp;rsquo;s not excessive but it still challenged some existing methods of communication. One of those was how we communicate new features which have recently gone live, somewhere along the way we stopped doing this.
-&lt;/p&gt;
-
-&lt;h2 id=&#34;shhh-we-re-releasing-software&#34;&gt;Shhh! We&amp;rsquo;re Releasing Software&lt;/h2&gt;
-
-&lt;p&gt;Previously, we deployed a change to one of our applications and didn&amp;rsquo;t tell anyone unless it solved a particular client issue. This meant we wouldn&amp;rsquo;t seek much feedback on new features and the team&amp;rsquo;s progress and activity was largely unseen by the rest of the company. Bearing in mind that our software is increasingly used internally, this seemed like a real missed opportunity.&lt;/p&gt;
-
-&lt;h2 id=&#34;enter-release-crab&#34;&gt;Enter Release Crab&lt;/h2&gt;
-
-&lt;p&gt;Now we have a dedicated Slack channel for internally announcing the release of new features, bug fixes and other changes. The announcement is typically done by a developer after they push their changes to production as they have the most context. But we&amp;rsquo;re pragmatic with it and don&amp;rsquo;t announce every little change, for example, we might wait until we&amp;rsquo;ve finished a sequence of quick deployments. However, &lt;a href=&#34;http://tech.driftrock.com/post/tech-values&#34;&gt;we value feedback&lt;/a&gt; so we&amp;rsquo;re regularly announcing updates.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s an example of a few changes going live for Create (an application for quickly creating ads on Facebook):&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://danbadge.github.io/img/release-notes.png&#34; alt=&#34;Example release notes&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;(Note the crab emoji - this is now synonymous with release announcements)&lt;/p&gt;
-
-&lt;p&gt;This seems like a simple and obvious addition to a production deployment but has had surprising impact, here&amp;rsquo;s a few improvements it&amp;rsquo;s made:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Tighter feedback loop&lt;/strong&gt; - more communication between the Product Development team (us) and the other teams in Driftrock - Performance Marketing (internal users), Sales and Client Solutions.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Increased accountability and ownership&lt;/strong&gt; - we could automate these release notes but the personal touch adds an element of accountability, giving the readers a point of contact to field any feedback. Therefore the author needs to understand what&amp;rsquo;s going live and (if necessary) what&amp;rsquo;s happening across the team. Gathering this information is required to help the author distil the announcement into something which is simple and concise.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Keeps deployments small&lt;/strong&gt; - similarly that small amount of manual overhead for the author gives us yet another reason to keep the batch size of a deployment small and ensure we&amp;rsquo;re releasing software early and often.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;future-releases&#34;&gt;Future Releases&lt;/h2&gt;
-
-&lt;p&gt;We&amp;rsquo;re still getting used to this process and it will certainly evolve. Early ideas to build on this include automating release notes based on commit messages and working out how we can provide our clients with a similar version, possibly even making these public.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Update 09/01/2017: Public facing release notes are now available. They are updated every two weeks with the help of our Client Solutions team and you can find them here - &lt;a href=&#34;http://knowledge.driftrock.com/product-updates&#34;&gt;http://knowledge.driftrock.com/product-updates&lt;/a&gt;&lt;/p&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -153,38 +46,7 @@ Red - avoidable manual step.&lt;/em&gt;&lt;/p&gt;
       <pubDate>Tue, 26 Aug 2014 16:51:00 +0000</pubDate>
       
       <guid>https://danbadge.github.io/post/enabling-change-on-the-7digital-catalogue/</guid>
-      <description>&lt;p&gt;Since February 2014 I’ve been working on the Content Discovery Team here at 7digital, we are responsible for every endpoint listed under Catalogue API here - &lt;a href=&#34;http://developer.7digital.com/resources/api-docs/catalogue-api&#34;&gt;http://developer.7digital.com/resources/api-docs/catalogue-api&lt;/a&gt; – and probably a few more. This is a mix of discovery endpoints and core catalogue endpoints often split by artist, albums (releases) and tracks. The discovery side of it consists of searching, recommendations, charts, genres, new and popular tracks and albums. The core catalogue endpoints are requests to the API for an album, tracks on an album, an artist, an artist’s releases or just track information using a 7digital unique identifier (referred to as releaseId, trackId and artistId).&lt;/p&gt;
-
-&lt;p&gt;Going back to early February the team, three developers, a QA and product manager, had &lt;strong&gt;inherited a maintenance nightmare&lt;/strong&gt;. We owned around 20 endpoints across 4 applications all of which do vaguely similar things retrieving artist, release or track information. Except we were using &lt;strong&gt;two large out-of-sync data stores&lt;/strong&gt;, a SQL Server database and a Solr data store. Solr essentially containing a denormalised version of what you would find in SQL.&lt;/p&gt;
-
-&lt;p&gt;Over the years there had been a push to use Solr as the single point of truth and there had been much investment to move all endpoints over to use it instead of SQL (a reasonable idea at the time). This meant we were using Solr for both text searching and Id lookups on most of the Catalogue endpoints but using SQL on a number of others. Furthermore we had to index all possible information relating to a track or release in Solr, much of which is territory specific. As an example; the price for an album is territory specific because it will be different in the UK to the US, as will the streaming and download release dates. In order to represent this data in a denormalised form in Solr, the solution was to &lt;strong&gt;duplicate every track and release across every territory it was available in&lt;/strong&gt;. This was a particular problem for the track index. Given we have approximately 27 million tracks in our catalogue and content in 30 odd territories, this quickly led to a massive and expensive index of tracks which was pushing &lt;strong&gt;660 GB in size and contained 700 million documents&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Due to the size of the index and the amount of data the &lt;a href=&#34;http://api.7digital.com/1.2/track/search?q=weezer&amp;amp;oauth_consumer_key=YOUR_KEY_HERE&#34;&gt;~/track/search&lt;/a&gt; endpoint performed horribly averaging 5 second response times. More pressing was the amount of &lt;strong&gt;unplanned and support-type work the team were performing in order to maintain the track index&lt;/strong&gt;. This would vary from restarting live web servers to performing manual data updates to inactivate a track, which should no longer be available on the API. The latter was common because we couldn’t perform a full re-index as it would take up to FIVE DAYS and usually failed, so we built a complex indexing application which would only send to Solr those tracks which had changed. Unfortunately this workaround was built upon an existing process which was used to identify changes in the catalogue. This consisted of tons of triggers and scheduled jobs in SQL Server where it wasn’t uncommon to see nested views, temporary tables and layers of stored procedures. &lt;strong&gt;None of it was tested and all of it was impossible to follow and reason about.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Eventually a new feature came along which would have required many changes and additions at each step of this convoluted process. This gave us the business case required to begin simplifying our architecture. We recognised that we needed Solr for searching because this is exactly what it’s good at, but we saw no benefit in using it for Id lookups, particularly when we could be closer to the source data and have good performance using SQL Server. We wanted to shrink the size of the track index and so we needed to tackle a number of problems. We needed to remove territory specific data from the index so we could stop duplicating each track across 30 territories. We also needed to replace any unnecessary dependencies where possible and reduce the number of indexed fields to only those which should be searchable.&lt;/p&gt;
-
-&lt;p&gt;To do any of this we needed to source much of the data stored in Solr from somewhere else. We recognised early on that endpoints such as ~/track/search and ~/track/chart where just a list of tracks and a full track resource could be retrieved from another public endpoint; &lt;a href=&#34;http://api.7digital.com/1.2/track/details?trackid=12345&amp;amp;oauth_consumer_key=YOUR_KEY_HERE&amp;amp;country=GB&#34;&gt;~/track/details&lt;/a&gt;. With this in mind we set about improving a number of core catalogue endpoints (including ~/track/details) reducing response times dramatically, improving the code base and bringing the monitoring of these endpoints up to scratch with everything else. The ~/track/search endpoint could then look something like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://danbadge.github.io/img/track-search-architecture.jpg&#34; alt=&#34;Track Search Architecture&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;It remained on the old track index for a while but was only touching a few of the fields. Taking this incremental step, which had a small negative impact on performance, meant we could bring a new smaller index up and switch over to it with minimal disruption. We managed this risk further by using &lt;a href=&#34;http://www.infoq.com/news/2013/03/canary-release-improve-quality&#34;&gt;canary deploys&lt;/a&gt; too, rolling out searches on the new index to a few servers until we were satisfied enough to do a full deployment. The &lt;strong&gt;new track index weighed in at just over 6GB&lt;/strong&gt; and response times are averaging 500ms, a dramatic improvement.&lt;/p&gt;
-
-&lt;p&gt;We can now do a &lt;strong&gt;full re-index of tracks within an hour&lt;/strong&gt;, we do this twice a day. This allows us to experiment more freely using features of Solr and Lucene without being held back by technical debt. Now we make changes daily, which allows us to test out any assumptions. This is particularly valuable when working on something as complex and subjective as text search.&lt;/p&gt;
-
-&lt;p&gt;Crucially with the old track index gone &lt;strong&gt;unplanned work tailed off&lt;/strong&gt; and we started delivering business value. Most recently adding auto-complete style searching to all three search endpoints and resolving some long standing problems with matching on artist names like P!nk and Ke$ha.&lt;/p&gt;
-
-&lt;p&gt;We’ve also taken all the release endpoints in a similar architectural direction, which will eventually mean we can iterate quickly on improving ~/release/search too. Technically we now have only one integration point with the catalogue database for releases and tracks, within ~/release/details and ~/track/details. Now that many of our APIs consume these endpoints we’ve improved consistency between them and we no longer have many tentacles going direct to the database, which will allow us to move a lot quicker and make improvements across the catalogue when needed.&lt;/p&gt;
-
-&lt;p&gt;In conclusion, we benefited from a number of key concepts: we simplified and refactored when working through each of these technical changes, &lt;strong&gt;removing a lot of unnecessary complexity.&lt;/strong&gt; For example, approaching clients about removing rarely used optional parameters and in time removing them.&lt;/p&gt;
-
-&lt;p&gt;We tackled causes of unplanned work, often eliminating any immediate burden with small fixes and workarounds so we could &lt;strong&gt;focus more of the team’s energy on the wider problem&lt;/strong&gt;. Similarly, we elevated these issues, making them visible to the rest of the business. This helped justify our business case for tackling the wider problem.&lt;/p&gt;
-
-&lt;p&gt;We &lt;strong&gt;automated the Solr infrastructure,&lt;/strong&gt; this hasn’t been mentioned much as it’s still evolving, but we’re now able to push through configuration changes to production several times a day. This a world away from where we were and came about through a combination of configuration management (CFEngine), TDD (Test Kitchen, Vagrant), a few custom scripts to automate &lt;a href=&#34;https://wiki.apache.org/solr/CoreAdmin#RELOAD&#34;&gt;Solr core reloads&lt;/a&gt; and reducing the size of the track index.&lt;/p&gt;
-
-&lt;p&gt;Finally, we benefited most from lots of collaboration and communication inside and outside of the team, &lt;strong&gt;discussing the technical and architectural direction&lt;/strong&gt; at length. We even started organising weekly discussions just to run through the architecture we were heading towards, any tweaks we could make or any problems we would encounter along the way. This architecture is continuing to evolve but it’s already paying off, with the team beginning to prove that we can deliver changes quickly to the 7digital catalogue.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;For a more detailed and technical view on what we did and how we did it, check out Michael Okarimia’s posts: &lt;a href=&#34;http://www.michaelokarimia.com/blog/2014/08/11/fixing-7digitals-music-search-part-one-the-gargantuan-index/&#34;&gt;part one&lt;/a&gt; and &lt;a href=&#34;http://www.michaelokarimia.com/blog/2014/08/18/fixing-7digital-music-search-part-two-the-88-speed-improvement/&#34;&gt;part two&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-</description>
+      <description>Since February 2014 I’ve been working on the Content Discovery Team here at 7digital, we are responsible for every endpoint listed under Catalogue API here - http://developer.7digital.com/resources/api-docs/catalogue-api – and probably a few more. This is a mix of discovery endpoints and core catalogue endpoints often split by artist, albums (releases) and tracks. The discovery side of it consists of searching, recommendations, charts, genres, new and popular tracks and albums. The core catalogue endpoints are requests to the API for an album, tracks on an album, an artist, an artist’s releases or just track information using a 7digital unique identifier (referred to as releaseId, trackId and artistId).</description>
     </item>
     
     <item>
@@ -193,32 +55,7 @@ Red - avoidable manual step.&lt;/em&gt;&lt;/p&gt;
       <pubDate>Sun, 21 Jul 2013 00:00:00 +0000</pubDate>
       
       <guid>https://danbadge.github.io/post/ten-deploys-a-day-and-still-moving-slowly/</guid>
-      <description>
-
-&lt;p&gt;There’s a feeling within my team at &lt;a href=&#34;http://www.7digital.com/&#34;&gt;7digital&lt;/a&gt; that we’re taking a long time to complete projects or features. Oddly this isn’t something we are currently measuring. We do though measure the &lt;a href=&#34;http://blog.robbowley.net/2012/01/06/productivity-throughput-and-cycle-time/&#34;&gt;throughput and cycle time&lt;/a&gt; of tasks. Tasks are items of work which the team create as a small iterative step towards a larger feature or story. This is useful for visualising the teams productivity, with the idealistic target of low cycle time and high throughput.&lt;/p&gt;
-
-&lt;p&gt;Typically our stakeholders are interested in an estimation and delivery of a project or feature not a task. I was interested to see whether this was something we could measure, with a slant towards having historical data available for helping us estimate. I gathered all the tasks into a spreadsheet going back to the beginning of September 2012 and assigned a descriptive project and feature name I hoped the rest of the organisation could understand. This had the added benefit of forcing me to step back from the implementation and attempt to relate technical items to organisation priorities, something which is far too often overlooked.&lt;/p&gt;
-
-&lt;p&gt;This produced some interesting results, which aligned with the team’s fears. Our average lead time of the six planned projects we had completed since September was 160 days. Over half a year! Moreover, this only represents the time it takes for an organisation-wide project to pass-through our team, often there are several teams involved each with their own changes and features to implement. We do roughly two features per project and so it’s a similar story there. On average we’re taking 72 days to complete a feature.&lt;/p&gt;
-
-&lt;p&gt;We have our &lt;a href=&#34;http://martinfowler.com/bliki/DeploymentPipeline.html&#34;&gt;deployment pipeline&lt;/a&gt; at 7digital and deploying changes to production is an absolute breeze. In fact, we’re so good at it we can’t stop talking about it &lt;a href=&#34;http://prezi.com/2wczo541qzpy/dddea-continuous-delivery-at-7digital/&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;http://blogs.7digital.com/dev/2012/06/20/evolution-of-deployment-in-7digital/&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;http://blogs.7digital.com/dev/2012/04/28/how-we-do-deployments/&#34;&gt;here&lt;/a&gt;. So what’s taking us so long to get new features out the door?&lt;/p&gt;
-
-&lt;h2 id=&#34;technical-debt&#34;&gt;Technical Debt&lt;/h2&gt;
-
-&lt;p&gt;We have a lot of technical debt. It’s not tested, it’s horribly coupled and entirely confusing, a proper &lt;a href=&#34;http://en.wikipedia.org/wiki/Big_ball_of_mud&#34;&gt;ball of mud&lt;/a&gt;. We try not too but occasionally we touch it and it can slow development down. We’ve been bitten before too where a change we made broke something unrelated in production. We can roll back with ease though so it’s not all that scary and can’t be entirely accountable for our tame pace.&lt;/p&gt;
-
-&lt;h2 id=&#34;bottlenecks&#34;&gt;Bottlenecks&lt;/h2&gt;
-
-&lt;p&gt;Developing public-facing APIs with numerous existing clients all with their own priorities and ageing implementations presents a challenge in patience and communication. Fortunately, we’ve already made some progress here: In a recent project we needed to migrate a few external API consumers to a new endpoint. We did all the work, communicated the changes and waited. Several months later we started to see some usage only to find out our endpoint wasn’t quite working as expected. To try and mitigate that we have a new policy within our team, dogfooding. We’re now attempting to consume any of our new endpoints we can. There’s two big benefits here: code running in production and failing early.&lt;/p&gt;
-
-&lt;h2 id=&#34;unplanned-projects&#34;&gt;Unplanned Projects&lt;/h2&gt;
-
-&lt;p&gt;Whilst looking back through the data and trying to determine project names, relationships began to emerge between occasional tasks. We found examples of sizeable unplanned projects, not just unplanned tasks, bubbling away in the background. These projects did have clear value and even related back to wider organisational priorities. As a team though we had already committed to other supposedly more important already in-progress projects. Crucially, this results in extended delivery dates on all the projects being worked on.&lt;/p&gt;
-
-&lt;h2 id=&#34;distractions-in-parallel&#34;&gt;Distractions in Parallel&lt;/h2&gt;
-
-&lt;p&gt;I’ve done the maths and six projects at 160 days each in under a year doesn’t add up. We’ve toyed with a number setups but generally we have two streams and therefore two projects or two features on the go at any one time with a pair on each thing (there’s four of us). This means our focus is constantly shifting between those two items whilst we attempt to give them equal attention. Looking at this further, I attempted to determine the amount of days we spent not working on an ‘in-progress’ feature and in every example it dwarfs the amount of days spent working on the feature. Clearly by spreading ourselves across two things we’re generating much more waste then we realise and unlike technical debt and bottlenecks this is one area where we have much more control.&lt;/p&gt;
-</description>
+      <description>There’s a feeling within my team at 7digital that we’re taking a long time to complete projects or features. Oddly this isn’t something we are currently measuring. We do though measure the throughput and cycle time of tasks. Tasks are items of work which the team create as a small iterative step towards a larger feature or story. This is useful for visualising the teams productivity, with the idealistic target of low cycle time and high throughput.</description>
     </item>
     
     <item>
@@ -227,32 +64,8 @@ Red - avoidable manual step.&lt;/em&gt;&lt;/p&gt;
       <pubDate>Mon, 17 Jun 2013 00:00:00 +0000</pubDate>
       
       <guid>https://danbadge.github.io/post/the-lean-startup-notes/</guid>
-      <description>
-
-&lt;p&gt;Finally I got round to reading Eric Ries’ well known book - &lt;a href=&#34;https://www.amazon.co.uk/The-Lean-Startup-Innovation-Successful/dp/0670921602&#34;&gt;the Lean Startup&lt;/a&gt;. This book often creeps into conversations and conferences so I was keen to see what was in there rather than relying on other’s insights.&lt;/p&gt;
-
-&lt;p&gt;From a developer point of view, it’s a fairly business-ey read as you might expect but there’s some great stuff in there and lots (and lots!) of examples from the technology industry as well as more traditional industries. Here’s my main take homes from the book:&lt;/p&gt;
-
-&lt;h2 id=&#34;build-measure-learn&#34;&gt;Build-Measure-Learn&lt;/h2&gt;
-
-&lt;p&gt;In the highly uncertain world of a startup you might have a good idea or a product but how do you know anybody wants it? In short; you don’t. So what can you do? Ries suggests you make an assumption of what the customer might want. Then figure out how you’re going to measure it’s success. Build it, ship it and then review the metrics. Did it work? Didn’t it? Most importantly what did we learn? The important thing is not building a truly awesome polished product; it’s learning what the customer is actually after as soon as possible. Write throw-away experiments or establish a minimal viable product to provide enough of a basis to get learning.&lt;/p&gt;
-
-&lt;h2 id=&#34;vanity-metrics&#34;&gt;Vanity Metrics&lt;/h2&gt;
-
-&lt;p&gt;This term was new on me and it seems to have really stuck. These are literally everywhere. Ries believes that all too often people make assumptions based on vanity metrics. A good example might be using the total number of users as validation for a product’s improvement and increased popularity. Let’s say the development team released a new user registration page on some date and there’s a spike in the total number of users, that must be because the lovely new layout, right? Possibly. Or maybe marketing started a new advertising campaign on that date? There’s probably lots of reasons all of which can’t be fully determined. This doesn’t mean vanity metrics are useless though. Using A/B Testing you could compare your vanity metrics on the two versions of the product and see which one performs better. Perhaps releasing one change for a week to half of the users to see if they’re more likely to purchase something.&lt;/p&gt;
-
-&lt;h2 id=&#34;innovate&#34;&gt;Innovate&lt;/h2&gt;
-
-&lt;p&gt;Companies are often formed based on an innovation. However, they soon get bogged down with the operational and infrastructural efforts which go into maintaining and improving their established product. Ries understandably argues that innovation must continue or an organisation will face stagnation. How do you successfully create an innovative environment though? Ries suggests that “strong cross-functional teams” should be allowed to develop around an innovation. These teams should have all the resources required to see a product all the way through end-to-end. Then once the product moves from phase to phase there could be a hand off between teams allowing others to take on the further improvements and maintenance. Further to this, allowing the original members to stay with that product or move on to something else. Re-reading this it actually sounds quite similar to that described in the Valve handbook for new employees. Slightly less ‘Valve’ is Ries’ vision of having ‘Entrepreneurs’ within established organisations, presumably to come up with all the ideas. Not sure about this one.&lt;/p&gt;
-
-&lt;h2 id=&#34;waste&#34;&gt;Waste&lt;/h2&gt;
-
-&lt;p&gt;Towards the end of the book there’s some great insight into the much wider problem of waste. Ries says “In every industry we see endless stories of failed launches, ill-conceived projects, and large-batch death spirals. I consider this misuse of people’s time a criminally negligent waste of human creativity and potential… What percentage of all that waste is preventable?”&lt;/p&gt;
-
-&lt;p&gt;Which of our efforts are value-creating and which are wasteful? Bare in mind that value is providing benefit to the customer. How often do those of us who are software developers actually benefit the customer? Personally, as a developer of APIs and not consumer facing products, not nearly enough. Our products are abstracted away from the customer so much so that it’s very easy to lose sight of their needs.&lt;/p&gt;
-
-&lt;p&gt;Finally, I’ll leave you with this great quote from Peter Drucker also taken from the book - “There is surely nothing quite so useless as doing with great efficiency what should not be done at all”.&lt;/p&gt;
-</description>
+      <description>Finally I got round to reading Eric Ries’ well known book - the Lean Startup. This book often creeps into conversations and conferences so I was keen to see what was in there rather than relying on other’s insights.
+From a developer point of view, it’s a fairly business-ey read as you might expect but there’s some great stuff in there and lots (and lots!) of examples from the technology industry as well as more traditional industries.</description>
     </item>
     
     <item>
@@ -261,14 +74,7 @@ Red - avoidable manual step.&lt;/em&gt;&lt;/p&gt;
       <pubDate>Sun, 19 May 2013 16:51:00 +0000</pubDate>
       
       <guid>https://danbadge.github.io/post/programming-is-like-football/</guid>
-      <description>&lt;p&gt;The title of this blog post makes is purposefully tongue-in-cheek, let me attempt to explain. As a kid football was everything, I played a ridiculous amount. Lunchtime and after school kickabouts, perhaps training twice a week and then two matches at the weekend. It was great and academia was not so great. I was a pretty average student – not the worst, definitely not the best and certainly not interested. So naturally I grew up and became a Software Developer.&lt;/p&gt;
-
-&lt;p&gt;What’s odd about this scene is that software development has an abundance of highly intelligent, talented people. They are thought-provoking, fascinating and challenging. Learning is at the heart of the development process and there’s an ever increasing list of books and articles to keep up with. None of which is likely to be associated with football anytime soon.&lt;/p&gt;
-
-&lt;p&gt;I’ve been thinking a lot about why I enjoy software development and what interests me and I keep finding comparisons with football. What I’m discovering is that I’m driven by self-improvement. Each time I play football there are aspects of my game I’m trying to change. A lot of the exercise outside of football I do with a view to being fitter or stronger the next time around. Similarly with software, I’m reading recommended books, going to tech events and collaborating and challenging those around me all with the intention of being a better developer. That self-awareness to improve takes a lot of getting used to - it doesn’t come naturally and definitely isn’t easy - but if you’ve played some team sports you might have a good shot (pun intended). As it turns out this whole time I’d be running regular internal retrospectives, much like the well-known Agile practice, but with a focus on the football pitch.&lt;/p&gt;
-
-&lt;p&gt;In a way what I’m getting at here is mastery. &lt;a href=&#34;http://www.amazon.co.uk/Drive-Surprising-Truth-About-Motivates/dp/184767769X&#34;&gt;Daniel Pink’s book Drive&lt;/a&gt; discusses mastery in great depth and is definitely worth a read. He writes “Mastery is a mindset: It requires the capacity to see your abilities not as finite, but as infinitely improveable. Mastery is a pain: It demands effort, grit and deliberate practice. And mastery is an asymptote. It’s impossible to fully realise, which makes it simultaneously frustrating and alluring.” For me this is what it’s all about, the destination might be unachievable but trying to get there is going to bloody fun.&lt;/p&gt;
-</description>
+      <description>The title of this blog post makes is purposefully tongue-in-cheek, let me attempt to explain. As a kid football was everything, I played a ridiculous amount. Lunchtime and after school kickabouts, perhaps training twice a week and then two matches at the weekend. It was great and academia was not so great. I was a pretty average student – not the worst, definitely not the best and certainly not interested. So naturally I grew up and became a Software Developer.</description>
     </item>
     
   </channel>

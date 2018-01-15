@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://danbadge.github.io/</loc>
-    <lastmod>2017-03-31T12:00:00+00:00</lastmod>
+    <loc>https://danbadge.github.io/post/taking-retrospectives-to-the-rest-of-the-business/</loc>
+    <lastmod>2017-10-13T12:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -34,6 +35,149 @@
   <url>
     <loc>https://danbadge.github.io/post/programming-is-like-football/</loc>
     <lastmod>2013-05-19T16:51:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/agile/</loc>
+    <lastmod>2017-10-13T12:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/automation/</loc>
+    <lastmod>2014-08-26T16:51:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/change/</loc>
+    <lastmod>2017-03-31T12:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/ci/cd/</loc>
+    <lastmod>2017-03-31T12:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/continuous-delivery/</loc>
+    <lastmod>2017-03-31T12:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/continuous-improvement/</loc>
+    <lastmod>2017-10-13T12:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/cycle-time/</loc>
+    <lastmod>2013-07-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/</loc>
+    <lastmod>2017-10-13T12:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/deployment/</loc>
+    <lastmod>2017-03-31T12:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/driftrock/</loc>
+    <lastmod>2017-03-31T12:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/feedback/</loc>
+    <lastmod>2016-12-29T16:51:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/infrastructure/</loc>
+    <lastmod>2014-08-26T16:51:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/lean/</loc>
+    <lastmod>2013-06-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/lucene/</loc>
+    <lastmod>2014-08-26T16:51:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/mastery/</loc>
+    <lastmod>2013-05-19T16:51:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/post/</loc>
+    <lastmod>2017-10-13T12:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/refactoring/</loc>
+    <lastmod>2014-08-26T16:51:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/retrospectives/</loc>
+    <lastmod>2017-10-13T12:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/sport/</loc>
+    <lastmod>2013-05-19T16:51:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/startup/</loc>
+    <lastmod>2013-06-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/</loc>
+    <lastmod>2017-10-13T12:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/technical-debt/</loc>
+    <lastmod>2014-08-26T16:51:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danbadge.github.io/tags/waste/</loc>
+    <lastmod>2013-06-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>
