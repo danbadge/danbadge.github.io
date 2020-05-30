@@ -6,160 +6,75 @@
 <meta content="" name="keywords">
 <meta content="Driftrock&#39;s Journey to Continuous Delivery - Daniel Watts" property="og:title">
 <title>Driftrock&#39;s Journey to Continuous Delivery | Daniel Watts</title>
-<link rel="stylesheet" href="https://danbadge.github.io/css/style.css">
-<link rel="stylesheet" href="https://danbadge.github.io/css/override.css">
+<link rel="stylesheet" href="https://www.danielwatts.info/css/style.css">
+<link rel="stylesheet" href="https://www.danielwatts.info/css/override.css">
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans:400,600" rel="stylesheet">
-
-<section class="section">
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <a class="nav-item" href="https://danbadge.github.io/"><h1 class="title is-4">Daniel Watts</h1></a>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/danbadge">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://twitter.com/dan_badge">
-            <span class="icon">
-              <i class="fa fa-twitter"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
 
 <section class="section post">
   <div class="container">
     <h2 class="subtitle is-6">March 31, 2017</h2>
     <h1 class="title">Driftrock&#39;s Journey to Continuous Delivery</h1>
     <div class="content">
-      
-
-<p>Over the last year, Driftrock has been on a fairly typical journey - you might have heard it before - we went from manual deployments and an apathy for shipping software to automated and repeatable deployments with a focus on delivering value.</p>
-
+      <p>Over the last year, Driftrock has been on a fairly typical journey - you might have heard it before - we went from manual deployments and an apathy for shipping software to automated and repeatable deployments with a focus on delivering value.</p>
 <p>Rather then bore you with yet another post about the merits of Continuous Delivery, though I would like to, I’ll attempt to focus instead on how we achieved this shift. Inspired by the book <a href="https://www.amazon.co.uk/d/Books/More-Fearless-Change-Strategies-Making-Ideas-Happen/0133966445">More Fearless Change</a> by Mary Lynn Manns &amp; Linda Rising, I’ll do my best to remember the steps we took and more specifically the patterns we continue to use to try and change the team’s behaviours.</p>
-
-<h2 id="rolling-back-the-year-s">Rolling back the year(s)</h2>
-
+<h2 id="rolling-back-the-years">Rolling back the year(s)</h2>
 <p>First some context, back in June 2016 a change to any of our applications would meander it’s way into production. There was very little awareness of whether a change had been deployed, there was a frustratingly popular branching model that dramatically increased cognitive load and deployments were manually triggered from a developer&rsquo;s machine via Heroku’s CLI.</p>
-
 <p>A new change from development to production looked a bit like this:</p>
-
-<p><img src="/img/articles/journey-to-cd/deployment-process-before.png" alt="Deployment process before" />
-<br /><em>Green - automated step.<br />
-Orange - unavoidable manual step or a manual step we’re not (yet) looking to change.<br />
-Red - avoidable manual step.</em></p>
-
+<p><img src="/img/articles/journey-to-cd/deployment-process-before.png" alt="Deployment process before">
+<!-- raw HTML omitted -->_Green - automated step.<!-- raw HTML omitted -->
+Orange - unavoidable manual step or a manual step we’re not (yet) looking to change.<!-- raw HTML omitted -->
+Red - avoidable manual step._</p>
 <p>There was also a number of inconsistencies in that deployment process depending on the application. Some didn’t have a staging environment, those that did may or may not have been automatically deployed staging and not all applications had automated tests run on master or any other branches. In short, it was unnecessarily complex, wildly inconsistent with little to no automation. So it’s no surprise that there was a lack of interest from the team when it came to deploying software.</p>
-
 <p>All of the above meant deployments were irregular and risky. More often than not a large batch of changes were pushed live, predictably increasing the likelihood of something going wrong and sometimes removing the ability to safely rollback.</p>
-
 <h2 id="baby-steps">Baby Steps</h2>
-
 <p>I’ll try to explain the steps we took and the relevant patterns we used to improve the scenario described above. At the very bottom of this page there is a reference for the patterns mentioned throughout these steps. Also you can find all the patterns conveniently <a href="http://nebula.wsimg.com/4e8937e14b7a33327914aceddd3b11c0?AccessKeyId=C3C1767177F54BB8BF89&amp;disposition=0&amp;alloworigin=1">listed and described here</a>.</p>
-
-<h3 id="step-1-involve-everyone">Step 1 - Involve Everyone</h3>
-
+<h3 id="step-1---involve-everyone">Step 1 - Involve Everyone</h3>
 <p>Unconventionally it started by improving our retrospectives. The team needed a platform to discuss problems and suggest improvements (<em>Involve Everyone</em>). Though we were having a weekly chat called a retrospective this bared little resemblance to the retrospectives I had seen at several other companies. Originally this meeting was much closer to a weekly status update, it focussed on every day work items and their progress rather then looking at <em>how we can improve how we work</em>. Suggesting and then demonstrating a more structured approach to retrospectives (by facilitating the first few retros) had a significant impact on the team beyond Continuous Delivery but one of the early discussion points was around how we deploy our software (<em>Plant the Seeds</em>).</p>
-
-<h3 id="step-2-just-do-it">Step 2 - Just Do It</h3>
-
+<h3 id="step-2---just-do-it">Step 2 - Just Do It</h3>
 <p>With the team a little uncertain about how a move towards Continuous Delivery might benefit them the next step was a simple one - show them an example (<em>Just Do It</em>). I put together a simple HTTP API application with one endpoint that returned ‘200 OK’ and created a deployment pipeline in <a href="https://snap-ci.com/">Snap CI</a>. I tried to mimic how we could treat our regular applications and only tackled the more immediate problems (<em>Pick Your Battles</em>); manual deployments and managing multiple branches on deploy. The latter also <a href="https://trunkbaseddevelopment.com/5-min-overview/">reducing the distance</a> between local development and production. Demonstrating that our deployment process could begin to evolve into this:</p>
-
-<p><img src="/img/articles/journey-to-cd/deployment-process-after.png" alt="Deployment process step 2" /></p>
-
+<p><img src="/img/articles/journey-to-cd/deployment-process-after.png" alt="Deployment process step 2"></p>
 <p>As you might expect (like with working software) this became a great reference point for demoing and explaining the value of CD and how it compares to what we were doing.</p>
-
-<h3 id="step-3-trial-run">Step 3 - Trial Run</h3>
-
+<h3 id="step-3---trial-run">Step 3 - Trial Run</h3>
 <p>With that seed planted, a working example and regular problems shipping quality software (only highlighting the severity - <em>Wake-up Call</em>) buy-in from the rest of the team was steadily increasing. The next step was to commit the team to moving a real application or two to the new system (<em>Trial Run</em>). We took two problematic applications to validate our assumptions as early as possible, created deployment pipelines for them, got them successfully deploying and let that change settle in. At this point I thankfully had some help (<em>Ask for Help</em>), making the progress much faster and the potential backlash easier to navigate.</p>
-
-<h3 id="step-4-persistent-pr">Step 4 - Persistent PR</h3>
-
+<h3 id="step-4---persistent-pr">Step 4 - Persistent PR</h3>
 <p>One pattern mentioned in the book stood out for me throughout this process - Persistent PR. On reflection this subtly appeared in a number of places, sometimes intentional but often unintentionally. Here’s a breakdown of where it featured:</p>
-
 <ul>
 <li>We changed our regular stand-up meeting so that it focussed first on what was deployed to production, then staging and then active development - typically known as <a href="https://blog.matthewbutt.com/2016/05/16/reinvigorating-a-daily-stand-up-by-walking-the-board/">Walk the Board</a>. Although indirect, it provides a regular reminder to the team to be focussed first on shipping software and how we can progress work items into production.</li>
 <li>At a weekly company meeting we briefly demoed how we changed our approach to deploying software. Incidentally this came about by chance but it was an opportunity worth taking (<em>Smell of Success</em>).</li>
 <li>We started to capture and communicate metrics around the number of deployments to production.</li>
 <li>We introduced a few feedback loops to help the flow of information around deployments:
-
 <ul>
 <li>Slack notifications - pushing information about failed builds or successful deployments. This meant developers didn’t need to go looking for the status of their change, it came to them.</li>
 <li>Release notes - <a href="http://tech.driftrock.com/post/release-notes/">we started announcing client-facing changes internally</a> as and when they were rolled out. This helped generate interest and discussion around new features from people across the company.</li>
 <li>Monitoring - something we haven’t fully worked out yet, but we continue to experiment with monitoring and better ways to gather feedback from our production systems.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="so-where-are-we-now">So, where are we now?</h2>
-
 <p>We’re currently deploying to production around 15 times a week, a good sustainable pace for our size team. We ended up moving approximately 30 projects to Snap CI. We created CD pipelines for a variety of applications; Ruby gems, Elixir packages, static sites hosted on AWS, web applications on Heroku and others hosted in Kubernetes. Everyone on the team takes ownership of ensuring a change they&rsquo;re working on is deployed to production and they work closely with other team members to test the relevant functionality. We’re increasingly reliant on automated tests, <a href="https://martinfowler.com/articles/feature-toggles.html">feature toggles</a> and backwards compatibility - topics which have featured heavily in our retrospectives.</p>
-
 <p>As a side note, Snap CI didn’t really live up to expectation but even this generated a few positives. After a experiencing several issues we began investing in using <a href="http://tech.driftrock.com/post/speeding-up-ci-tests-using-docker/">Docker for CI</a> to isolate and take ownership of the build environment. This had many knock-on effects such as using Docker in development and transitioning towards Kubernetes. It also reduced our dependency on our choice of CI/CD tool which soon became really important when <a href="https://blog.snap-ci.com/blog/2017/02/06/2017-02-06-snap-announcement/">Snap CI announced it was going away</a>. Fortunately, we’re now in a much better position to understand what we need, so we’re in the process of moving to <a href="https://buildkite.com">Buildkite</a> (another article for another time !).</p>
-
 <p>Hopefully that gives you an insight into how we continue to transition towards Continuous Delivery and the patterns that helped us. Our approach continues to evolve as we learn and we recognise that we&rsquo;ve still got some way to go. Summarising all of that effort into four steps certainly oversimplifies, to get to where we are now took many months even for our small team. This journey reminded us that a change like this doesn’t happen overnight and it takes lots of small, unremarkable steps in the right direction.</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <h3 id="other-helpful-resources">Other Helpful Resources</h3>
-
-<p><a href="https://vimeo.com/123616200">Linda Rising - Myths And Patterns Of Organisational Change</a><br />
-<a href="https://www.amazon.com/gp/product/0321601912">Continuous Delivery - Jez Humble &amp; Dave Farley</a><br />
-<a href="http://www.hibri.net/2016/06/18/continuous-delivery-rags-to-riches/">Continuous Delivery - Going from rags to riches - Hibri Marzook</a> <br />
-<a href="https://trunkbaseddevelopment.com/">Trunk Based Development</a><br /></p>
-
+<p><a href="https://vimeo.com/123616200">Linda Rising - Myths And Patterns Of Organisational Change</a><!-- raw HTML omitted -->
+<a href="https://www.amazon.com/gp/product/0321601912">Continuous Delivery - Jez Humble &amp; Dave Farley</a><!-- raw HTML omitted -->
+<a href="http://www.hibri.net/2016/06/18/continuous-delivery-rags-to-riches/">Continuous Delivery - Going from rags to riches - Hibri Marzook</a> <!-- raw HTML omitted -->
+<a href="https://trunkbaseddevelopment.com/">Trunk Based Development</a><!-- raw HTML omitted --></p>
 <h3 id="change-patterns-reference">Change Patterns Reference</h3>
-
 <p>Paraphrasing slightly from the book here’s a selection of patterns I’ve mentioned above:</p>
-
-<p><strong>Baby Steps</strong> - Take one small step at a time towards your goal.<br />
-<strong>Involve Everyone</strong> - Everyone should have an opportunity to make their own contribution.<br />
-<strong>Plant the Seeds</strong> - Take every opportunity you can to spark interest in an idea.<br />
-<strong>Just Do It</strong> - Don’t wait for the perfect moment, instead take the first baby step and start learning.<br />
-<strong>Pick your Battles</strong> - Focus your efforts on the most pressing issues.<br />
-<strong>Trial Run</strong> - When there’s reluctance to commit to an idea, suggest an experiment for a short period.<br />
-<strong>Wake-up Call</strong> - Point out the issues that create a need for change.<br />
-<strong>Ask for Help</strong> - Look for people and resources to help your efforts and encourage involvement.<br />
-<strong>Persistant PR</strong> - Keep the new idea in front of everyone, consistently promote it in a variety of ways.<br />
-<strong>Smell of Success</strong> - When your efforts produce a visible positive result, treat this as a teaching moment.<br /></p>
+<p><strong>Baby Steps</strong> - Take one small step at a time towards your goal.<!-- raw HTML omitted -->
+<strong>Involve Everyone</strong> - Everyone should have an opportunity to make their own contribution.<!-- raw HTML omitted -->
+<strong>Plant the Seeds</strong> - Take every opportunity you can to spark interest in an idea.<!-- raw HTML omitted -->
+<strong>Just Do It</strong> - Don’t wait for the perfect moment, instead take the first baby step and start learning.<!-- raw HTML omitted -->
+<strong>Pick your Battles</strong> - Focus your efforts on the most pressing issues.<!-- raw HTML omitted -->
+<strong>Trial Run</strong> - When there’s reluctance to commit to an idea, suggest an experiment for a short period.<!-- raw HTML omitted -->
+<strong>Wake-up Call</strong> - Point out the issues that create a need for change.<!-- raw HTML omitted -->
+<strong>Ask for Help</strong> - Look for people and resources to help your efforts and encourage involvement.<!-- raw HTML omitted -->
+<strong>Persistant PR</strong> - Keep the new idea in front of everyone, consistently promote it in a variety of ways.<!-- raw HTML omitted -->
+<strong>Smell of Success</strong> - When your efforts produce a visible positive result, treat this as a teaching moment.<!-- raw HTML omitted --></p>
 
     </div>
-    
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/ci/cd">ci/cd</a>
-    
-        <a class="button is-link" href="/tags/deployment">deployment</a>
-    
-        <a class="button is-link" href="/tags/continuous-delivery">continuous-delivery</a>
-    
-        <a class="button is-link" href="/tags/change">change</a>
-    
-        <a class="button is-link" href="/tags/driftrock">driftrock</a>
-    
-</div>
-
-    
   </div>
 </section>
-<section class="section">
-  <div class="container has-text-centered">
-    <p></p>
-  </div>
-</section>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
-
-<script>hljs.initHighlightingOnLoad();</script>
-
-
