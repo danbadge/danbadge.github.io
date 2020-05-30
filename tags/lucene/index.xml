@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lucene on Daniel Watts</title>
+    <link>https://www.danielwatts.info/tags/lucene/</link>
+    <description>Recent content in lucene on Daniel Watts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 26 Aug 2014 16:51:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.danielwatts.info/tags/lucene/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Enabling change on the 7digital Catalogue</title>
+      <link>https://www.danielwatts.info/post/enabling-change-on-the-7digital-catalogue/</link>
+      <pubDate>Tue, 26 Aug 2014 16:51:00 +0000</pubDate>
+      
+      <guid>https://www.danielwatts.info/post/enabling-change-on-the-7digital-catalogue/</guid>
+      <description>Since February 2014 I’ve been working on the Content Discovery Team here at 7digital, we are responsible for every endpoint listed under Catalogue API here - http://developer.7digital.com/resources/api-docs/catalogue-api – and probably a few more. This is a mix of discovery endpoints and core catalogue endpoints often split by artist, albums (releases) and tracks. The discovery side of it consists of searching, recommendations, charts, genres, new and popular tracks and albums. The core catalogue endpoints are requests to the API for an album, tracks on an album, an artist, an artist’s releases or just track information using a 7digital unique identifier (referred to as releaseId, trackId and artistId).</description>
+    </item>
+    
+  </channel>
+</rss>

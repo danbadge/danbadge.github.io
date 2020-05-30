@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>deployment on Daniel Watts</title>
+    <link>https://www.danielwatts.info/tags/deployment/</link>
+    <description>Recent content in deployment on Daniel Watts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 31 Mar 2017 12:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.danielwatts.info/tags/deployment/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Driftrock&#39;s Journey to Continuous Delivery</title>
+      <link>https://www.danielwatts.info/post/journey-to-cd/</link>
+      <pubDate>Fri, 31 Mar 2017 12:00:00 +0000</pubDate>
+      
+      <guid>https://www.danielwatts.info/post/journey-to-cd/</guid>
+      <description>Over the last year, Driftrock has been on a fairly typical journey - you might have heard it before - we went from manual deployments and an apathy for shipping software to automated and repeatable deployments with a focus on delivering value.
+Rather then bore you with yet another post about the merits of Continuous Delivery, though I would like to, I’ll attempt to focus instead on how we achieved this shift.</description>
+    </item>
+    
+    <item>
+      <title>How we do production release announcements at Driftrock</title>
+      <link>https://www.danielwatts.info/post/release-notes-at-driftrock/</link>
+      <pubDate>Thu, 29 Dec 2016 16:51:00 +0000</pubDate>
+      
+      <guid>https://www.danielwatts.info/post/release-notes-at-driftrock/</guid>
+      <description>&lt;p&gt;At Driftrock we&amp;rsquo;re a small company that has grown from 8 to 18 people in the last 9 months. That&amp;rsquo;s not excessive but it still challenged some existing methods of communication. One of those was how we communicate new features which have recently gone live, somewhere along the way we stopped doing this.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ten deploys a day and still moving slowly</title>
+      <link>https://www.danielwatts.info/post/ten-deploys-a-day-and-still-moving-slowly/</link>
+      <pubDate>Sun, 21 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.danielwatts.info/post/ten-deploys-a-day-and-still-moving-slowly/</guid>
+      <description>There’s a feeling within my team at 7digital that we’re taking a long time to complete projects or features. Oddly this isn’t something we are currently measuring. We do though measure the throughput and cycle time of tasks. Tasks are items of work which the team create as a small iterative step towards a larger feature or story. This is useful for visualising the teams productivity, with the idealistic target of low cycle time and high throughput.</description>
+    </item>
+    
+  </channel>
+</rss>

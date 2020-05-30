@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mastery on Daniel Watts</title>
+    <link>https://www.danielwatts.info/tags/mastery/</link>
+    <description>Recent content in mastery on Daniel Watts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 19 May 2013 16:51:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.danielwatts.info/tags/mastery/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Programming is a bit like football, isn&#39;t it?</title>
+      <link>https://www.danielwatts.info/post/programming-is-like-football/</link>
+      <pubDate>Sun, 19 May 2013 16:51:00 +0000</pubDate>
+      
+      <guid>https://www.danielwatts.info/post/programming-is-like-football/</guid>
+      <description>The title of this blog post makes is purposefully tongue-in-cheek, let me attempt to explain. As a kid football was everything, I played a ridiculous amount. Lunchtime and after school kickabouts, perhaps training twice a week and then two matches at the weekend. It was great and academia was not so great. I was a pretty average student – not the worst, definitely not the best and certainly not interested. So naturally I grew up and became a Software Developer.</description>
+    </item>
+    
+  </channel>
+</rss>
