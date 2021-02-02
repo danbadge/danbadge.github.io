@@ -3,12 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.danielwatts.info/tags/continuous-improvement/</loc>
-    <lastmod>2018-01-15T12:00:00+00:00</lastmod>
+    <loc>https://www.danielwatts.info/post/7-behaviours-to-avoid-software-architect/</loc>
+    <lastmod>2021-02-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.danielwatts.info/tags/architecture/</loc>
+    <lastmod>2021-02-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.danielwatts.info/</loc>
+    <lastmod>2021-02-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.danielwatts.info/post/</loc>
+    <lastmod>2021-02-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.danielwatts.info/tags/</loc>
+    <lastmod>2021-02-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.danielwatts.info/tags/continuous-improvement/</loc>
     <lastmod>2018-01-15T12:00:00+00:00</lastmod>
   </url>
   
@@ -19,16 +39,6 @@
   
   <url>
     <loc>https://www.danielwatts.info/post/giving-and-receiving-feedback/</loc>
-    <lastmod>2018-01-15T12:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.danielwatts.info/post/</loc>
-    <lastmod>2018-01-15T12:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.danielwatts.info/tags/</loc>
     <lastmod>2018-01-15T12:00:00+00:00</lastmod>
   </url>
   

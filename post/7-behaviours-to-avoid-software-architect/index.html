@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content='engineering, leadership, CTO, technology, software, engineer' name="keywords">
+<meta content="Daniel Watts" name="author">
+<meta property="og:description" content="An engineering leader and CTO with a focus on building high-performing teams and helping them create high-quality, maintainable products.">
+<meta content="7 behaviours to avoid in a software architecture role - Daniel Watts" property="og:title">
+<title>7 behaviours to avoid in a software architecture role | Daniel Watts</title>
+<link rel="stylesheet" href="https://www.danielwatts.info/css/style.css">
+<link rel="stylesheet" href="https://www.danielwatts.info/css/override.css">
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans:400,600" rel="stylesheet">
+
+<header class="section header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://www.danielwatts.info"><h1 class="title is-4">Daniel Watts</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://www.linkedin.com/in/danielwatts2/" target="_blank">
+            <span class="icon">
+              <i class="fa fa-linkedin"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://github.com/danbadge" target="_blank">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/dan_badge" target="_blank">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="section post">
+  <div class="container">
+    <h1 class="title">7 behaviours to avoid in a software architecture role</h1>
+    <h2 class="subtitle is-6">February 2, 2021</h2>
+    <div class="content">
+      <p>Over the years, I&rsquo;ve had the opportunity to work in architecture roles alongside experienced software/technical/solution architects. Through observing others and my own trial and error, I&rsquo;ve learned a little bit about what <em>not</em> to do in these roles (because it&rsquo;s often easier to reflect on what didn&rsquo;t work rather than what did). Even though I lean towards the idea that everyone should be architecting the system rather than having architects solely responsible - I recognise that some organisations are far from that ideal, and it&rsquo;s those folks I hope find this list helpful. So here it is, 7 behaviours to avoid if you&rsquo;re in a software architecture role:</p>
+<h2 id="1-dont-ignore-the-engineering-team">1. Don&rsquo;t ignore the engineering team</h2>
+<p>If you&rsquo;re not &ldquo;hands-on&rdquo; with the engineering team either through writing or reviewing code or deep in the technical discussions, then the likelihood is you aren&rsquo;t close enough to the problems and the individuals on the team. If you&rsquo;re not feeling their pain, then you are probably lacking the empathy and understanding to provide effective guidance. If you find yourself in this position, I would consider beginning with one-on-ones and pairing with engineers as the quickest way to increase empathy and understanding. Then look to participate in feature kick-offs, technical design discussions and code reviews where necessary.</p>
+<h2 id="2-dont-ignore-the-domain">2. Don&rsquo;t ignore the domain</h2>
+<p>It&rsquo;s part of the role to become a domain expert. This knowledge can be used to act as an effective translator between business and engineering. That said, you&rsquo;ll want to avoid being a communication bottleneck too, so it&rsquo;s important to teach, translate and document domain context and business value for the engineering team. This is where techniques like <a href="https://www.atlassian.com/continuous-delivery/principles/value-stream-mapping">value-stream mapping</a>, <a href="https://en.wikipedia.org/wiki/Event_storming">event storming</a> and <a href="https://twitter.com/ntcoding/status/1342805885224177666">domain-driven design</a> can really help.</p>
+<h2 id="3-dont-prescribe-or-mandate-architectures">3. Don&rsquo;t prescribe or mandate architectures</h2>
+<p>For the most part, our industry has moved past the notion that a system’s architecture is designed in isolation (or in an ivory tower) and handed-off to engineers to deliver. However, it definitely still happens. Software architecture and development should be inter-weaving activities, with feedback from one influencing the other. Keeping that feedback loop as short as possible will likely lead to better outcomes. So if you would like to design and create more resilient systems and your organisation tends to mandate or prescribe architectures; consider how you can best empower engineers to make sound architecture decisions instead. Working with the engineers to agree on a foundation of architectural principles and accepting that architecture is never done, it should evolve and change over time are good places to begin (see the <a href="https://www.thoughtworks.com/books/building-evolutionary-architectures">Building Evolutionary Architectures</a> book for more on this).</p>
+<h2 id="4-dont-_just_-seek-architectural-consistency">4. Don&rsquo;t <em>just</em> seek architectural consistency</h2>
+<p>Consistency certainly has a place in organisations that build and maintain many systems in order to to help prevent complexity. In my opinion, it&rsquo;s better to see it as a guideline that will likely have exceptions. Simply seeking or worse, enforcing consistency is a sure-fire way to slow the team down, squash innovation and reduce learning opportunities.</p>
+<h2 id="5-dont-forget-about-the-current-architectural-state">5. Don&rsquo;t forget about the current architectural state</h2>
+<p>It can be useful to model a target architecture based on agreed principles and in collaboration with engineers (see #1 and #3 above). However, it must be founded in all the nuance and understanding of the current architecture. Anything else could lead towards a doomed rewrite, an unhappy team or a failed pitch to some confused engineers.</p>
+<p>On a similar note, I&rsquo;ve seen many conversations where stakeholders begin to assume the target state is in fact the current state. This can have significant downsides for the engineering team, for example; a sense of moving too slow, missed tasks that were presumed completed or a lack of appreciation upon completing a large chunk of technical work. Stakeholder discussions about target state may need to include regular reminders about the current state.</p>
+<h2 id="6-dont-get-too-attached-to-the-desired-architecture">6. Don&rsquo;t get too attached to the desired architecture</h2>
+<p>It can be easy to fall into the trap of attaching an opinion to your identity, particularly if you&rsquo;ve got the task of providing a technical direction for an engineering team. New information and unforeseen circumstances will emerge, so any target state will 100% change. As these scenarios surface, you will need to keep an open mind to adapt your view and the direction. A fixed view will only hold back progress. As mentioned in #3, the architecture <em>should</em> be going through constant, incremental change.</p>
+<h2 id="7-dont-let-review-processes-stagnate">7. Don&rsquo;t let review processes stagnate</h2>
+<p>As an architect in a large organisation you are likely to be responsible for or actively involved in architectural and security review processes, either as a reviewer or seeking a review. These processes are often change approval reviews that give the green-light for a production release. They can be long and drawn out, unclear in their value, involve reviewers who have zero context, and result in unwanted or unnecessary outcomes; this makes them the perfect candidates for resisting change. As a more senior figure, the architect should be working hard against that intuition. They should seek to understand the purpose and value of the review process and relay it to others. They should also be hands-on in helping engineering teams through these processes, particularly for the first time. But most importantly, they should be constantly pushing to <a href="https://cloud.google.com/solutions/devops/devops-process-streamlining-change-approval">improve, reduce or potentially remove a review process</a> depending on its purpose and added value.</p>
+<p>There you have it. Hopefully I&rsquo;ll learn more things to avoid in future but for now, avoid these and you should be good; or at the very least better than a bunch of scenarios I&rsquo;ve witnessed. If you would like more on this topic, check out these excellent reads too:</p>
+<ul>
+<li><a href="https://martinfowler.com/articles/architect-elevator.html">The  Architect Elevator</a> - Visiting the upper floors</li>
+<li><a href="https://martinfowler.com/articles/value-architectural-attribute.html">The Elephant in the Architecture</a> - Why business value should be treated as an architectural attribute</li>
+<li><a href="https://mailchi.mp/4aeb4085ec6a/17-dear-architects?e=65367d58cd">This book reading list</a> by <a href="https://www.deararchitects.xyz/">Dear Architects,</a> has five books worth reading, including <a href="https://www.thoughtworks.com/de/books/building-evolutionary-architectures">Building Evolutionary Architectures</a>, and sums them up better than I could. It&rsquo;s also an excellent newsletter.</li>
+</ul>
+<p><em>Thanks to Vivek Jain, Hugo Nogueira and Robin Weston for reviewing various versions of this post.</em></p>
+
+    </div>
+    
+      <div class="tags">
+    
+        <a class="button is-link" href="/tags/architecture">architecture</a>
+    
+</div>
+
+    
+  </div>
+</section>
+<section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-40668336-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+

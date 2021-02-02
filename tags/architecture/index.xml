@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>architecture on Daniel Watts</title>
+    <link>https://www.danielwatts.info/tags/architecture/</link>
+    <description>Recent content in architecture on Daniel Watts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 02 Feb 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.danielwatts.info/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>7 behaviours to avoid in a software architecture role</title>
+      <link>https://www.danielwatts.info/post/7-behaviours-to-avoid-software-architect/</link>
+      <pubDate>Tue, 02 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.danielwatts.info/post/7-behaviours-to-avoid-software-architect/</guid>
+      <description>Over the years, I&amp;rsquo;ve had the opportunity to work in architecture roles alongside experienced software/technical/solution architects. Through observing others and my own trial and error, I&amp;rsquo;ve learned a little bit about what not to do in these roles (because it&amp;rsquo;s often easier to reflect on what didn&amp;rsquo;t work rather than what did). Even though I lean towards the idea that everyone should be architecting the system rather than having architects solely responsible - I recognise that some organisations are far from that ideal, and it&amp;rsquo;s those folks I hope find this list helpful.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,10 +6,19 @@
     <description>Recent content on Daniel Watts</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 15 Jan 2018 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Feb 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.danielwatts.info/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>7 behaviours to avoid in a software architecture role</title>
+      <link>https://www.danielwatts.info/post/7-behaviours-to-avoid-software-architect/</link>
+      <pubDate>Tue, 02 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.danielwatts.info/post/7-behaviours-to-avoid-software-architect/</guid>
+      <description>Over the years, I&amp;rsquo;ve had the opportunity to work in architecture roles alongside experienced software/technical/solution architects. Through observing others and my own trial and error, I&amp;rsquo;ve learned a little bit about what not to do in these roles (because it&amp;rsquo;s often easier to reflect on what didn&amp;rsquo;t work rather than what did). Even though I lean towards the idea that everyone should be architecting the system rather than having architects solely responsible - I recognise that some organisations are far from that ideal, and it&amp;rsquo;s those folks I hope find this list helpful.</description>
+    </item>
     
     <item>
       <title>Giving and receiving feedback</title>
